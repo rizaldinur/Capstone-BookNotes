@@ -1,8 +1,3 @@
-function showSearchBar() {
-  $("#togglerIcon").toggleClass("fa-times");
-  $(".search-column").slideToggle();
-}
-
 $(document).ready(function () {
   //mobile screen search button handler
   $("#mobile-btn-search").on("click", function () {
