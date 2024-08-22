@@ -4,17 +4,26 @@ function showSearchBar() {
 }
 
 $(document).ready(function () {
+  //mobile screen search button handler
+  $("#mobile-btn-search").on("click", function () {
+    $("#togglerIcon").toggleClass("fa-times");
+    $(".search-column").slideToggle();
+  });
+
+  //Make pagination
+  //fetch books data to be viewed
   const dataContainer = document.getElementById("book-container");
   const cards = Array.from(
     dataContainer.getElementsByClassName("card-container")
   );
   console.log(cards[0].outerHTML);
 
+  //set items per page and total pages
   const itemsPerPage = 6;
   let currentPage = 1;
   const totalPages = Math.ceil(cards.length / itemsPerPage);
 
-  //display content
+  //display content function
   function displayContent(page) {
     $("#book-container").empty();
     const start = (page - 1) * itemsPerPage;
