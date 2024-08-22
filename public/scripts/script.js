@@ -23,13 +23,7 @@ $(document).ready(function () {
     $("#book-container").empty();
     const start = (page - 1) * itemsPerPage;
     const end = Math.min(start + itemsPerPage, cards.length);
-    // cards.forEach((card, index) => {
-    //   if (index >= start && index < end) {
-    //     card.style.display = "block";
-    //   } else {
-    //     card.style.display = "none";
-    //   }
-    // });
+
     for (let i = start; i < end; i++) {
       $("#book-container").append(cards[i].outerHTML);
     }
