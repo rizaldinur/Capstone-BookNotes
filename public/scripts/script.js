@@ -52,4 +52,62 @@ $(document).ready(function () {
 
   // Initial display
   displayContent(currentPage);
+
+  //function get matching book on input search, limiit to 10
+  async function getMatchingBooks(input) {
+    try {
+      const response = await fetch(
+        `https://openlibrary.org/search.json?q=${input}&limit=5&fields=key,title,author_name,cover_i,first_publish_year`
+      );
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+
+      const json = await response.json();
+      console.log(json);
+      return json;
+    } catch (error) {
+      console.error(error.message);
+    }
+  }
+
+  //set debounce
+  let debounceTimeout;
+  //get the input from searchbox
+  $(".searchbox").on("input", async function () {
+    const input = $(this).val();
+    if (input === "") {
+      $(".suggestions").empty();
+    }
+    console.log(input);
+
+    // Clear the previous timeout if the input changes before the timeout is reached
+    clearTimeout(debounceTimeout);
+
+    //wait until no input after 2 seconds, then execute below
+    debounceTimeout = setTimeout(async () => {
+      $(".suggestions").empty();
+      //get mathcing book data from fetch API based on input
+      if (!input) return;
+      const data = await getMatchingBooks(input);
+      const suggestions = data.docs;
+      console.log(suggestions);
+
+      //render data as suggestions list
+      //suggestions is array, so iterate each data
+      suggestions.forEach((books, index) => {
+        const imgKey = books.cover_i;
+        const imgURL = `https://covers.openlibrary.org/b/id/${imgKey}-S.jpg`;
+        $(".suggestions").append(
+          `<button class="search-result d-flex w-100 gap-4 p-2 bg-light border-bottom border-dark-subtle"> <img src="${imgURL}" alt="" width="100" class="bg-dark" /><div id=about-book-${index} class="about-book text-start m-0 p-0"> <h2 class"book-title">${books.title} (${books.first_publish_year})</h2></div></button>`
+        );
+        books.author_name.forEach((authors) => {
+          $(`#about-book-${index}`).append(
+            `<p class="m-0 authors">${authors}</p>`
+          );
+          console.log(authors);
+        });
+      });
+    }, 1000);
+  });
 });
