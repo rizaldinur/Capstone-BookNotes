@@ -11,6 +11,7 @@ $(document).ready(function () {
   const cards = Array.from(
     dataContainer.getElementsByClassName("card-container")
   );
+
   console.log(cards[0].outerHTML);
 
   //set items per page and total pages
@@ -76,17 +77,17 @@ $(document).ready(function () {
   //get the input from searchbox
   $(".searchbox").on("input", async function () {
     const input = $(this).val();
-    if (input === "") {
-      $(".suggestions").empty();
-    }
-    console.log(input);
 
     // Clear the previous timeout if the input changes before the timeout is reached
     clearTimeout(debounceTimeout);
 
     //wait until no input after 2 seconds, then execute below
     debounceTimeout = setTimeout(async () => {
-      $(".suggestions").empty();
+      //get the suggestions view container
+      const container = $(this).closest(".search-container");
+      const suggestionElement = $(container).find(".suggestions");
+      console.log(suggestionElement);
+      $(suggestionElement).empty();
       //get mathcing book data from fetch API based on input
       if (!input) return;
       const data = await getMatchingBooks(input);
@@ -98,14 +99,14 @@ $(document).ready(function () {
       suggestions.forEach((books, index) => {
         const imgKey = books.cover_i;
         const imgURL = `https://covers.openlibrary.org/b/id/${imgKey}-S.jpg`;
-        $(".suggestions").append(
+        $(suggestionElement).append(
           `<button class="search-result d-flex w-100 gap-4 p-2 bg-light border-bottom border-dark-subtle"> <img src="${imgURL}" alt="" width="100" class="bg-dark" /><div id=about-book-${index} class="about-book text-start m-0 p-0"> <h2 class"book-title">${books.title} (${books.first_publish_year})</h2></div></button>`
         );
         books.author_name.forEach((authors) => {
           $(`#about-book-${index}`).append(
             `<p class="m-0 authors">${authors}</p>`
           );
-          console.log(authors);
+          // console.log(authors);
         });
       });
     }, 1000);
