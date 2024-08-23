@@ -119,7 +119,7 @@
             <a id="web-title" href=""><h1>Book Notes</h1></a>
           </div>
           <div
-            class="col-6 d-flex justify-content-end position-relative search-container p-0"
+            class="search-container col-6 d-flex justify-content-end position-relative p-0"
           >
             <form class="searchForm hide" action="#" method="get">
               <input
@@ -134,22 +134,11 @@
               </button>
             </form>
             <div class="suggestions"></div>
-            <!-- <div class="suggestions d-flex bg-light">
-              <button
-                class="search-result d-flex w-100 gap-4 p-2 border-bottom border-dark-subtle"
-              >
-                <img src="" alt="" width="75" height="75" class="bg-dark" />
-                <div class="about-book text-start m-0 p-0">
-                  <h2 clas>Skibidi toilet</h2>
-                  <p class="m-0">Gyatt Rizzler</p>
-                </div>
-              </button>
-            </div> -->
             <button id="mobile-btn-search" class="btn-search icon">
               <i id="togglerIcon" class="fa fa-search"></i>
             </button>
           </div>
-          <div class="search-column col-12 p-0">
+          <div class="search-container search-column col-12 position-relative">
             <form class="searchForm" action="#" method="get">
               <input
                 type="text"
@@ -163,6 +152,7 @@
                 <i class="fa fa-search"></i>
               </button>
             </form>
+            <div class="suggestions"></div>
           </div>
         </div>
       </div>
