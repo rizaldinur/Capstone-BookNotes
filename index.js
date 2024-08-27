@@ -54,7 +54,11 @@ app.get("/", async (req, res) => {
 });
 
 // POST a new post
-app.post("/submit", (req, res) => {});
+app.get("/book", (req, res) => {
+  const bookKey = req.query.bookKey;
+  console.log(bookKey);
+  res.sendStatus(200);
+});
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);

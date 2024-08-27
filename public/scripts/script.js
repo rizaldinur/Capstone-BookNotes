@@ -112,7 +112,12 @@ $(document).ready(function () {
         const imgKey = books.cover_i;
         const imgURL = `https://covers.openlibrary.org/b/id/${imgKey}-M.jpg`;
         $(suggestionElement).append(
-          `<button class="search-result d-flex w-100 gap-4 p-2 border-bottom border-dark-subtle"> <img src="${imgURL}" alt="" width="100" class="bg-dark" /><div id=about-book-${index} class="about-book text-start m-0 p-0"> <h2 class"book-title">${books.title} (${books.first_publish_year})</h2></div></button>`
+          `<button type="submit" value="${books.key.replace(
+            "/works/",
+            ""
+          )}" form="book-search" name="bookKey" class="search-result d-flex w-100 gap-4 p-2 border-bottom border-dark-subtle"> <img src="${imgURL}" alt="" width="100" class="bg-dark" /><div id=about-book-${index} class="about-book text-start m-0 p-0"> <h2 class"book-title">${
+            books.title
+          } (${books.first_publish_year})</h2></div></button>`
         );
         books.author_name.forEach((authors) => {
           $(`#about-book-${index}`).append(
