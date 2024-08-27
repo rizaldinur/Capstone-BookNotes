@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Book Notes</title>
+    <link rel="stylesheet" href="styles/main.css" />
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body class="bg-dark">
+    <header class="shadow-sm">
+      <div class="container-md">
+        <div class="row justify-content-between align-items-center py-4 px-2">
+          <div class="col-6 p-0">
+            <a id="web-title" href="/"><h1 class="m-0">Book Notes</h1></a>
+          </div>
+          <div
+            class="search-container col-6 d-flex justify-content-end position-relative p-0"
+          >
+            <form class="searchForm hide" action="#" method="get">
+              <input
+                type="text"
+                class="searchbox"
+                placeholder="Enter book title, author name,or isbn..."
+                name="search"
+                autocomplete="off"
+              />
+              <button type="submit" class="icon">
+                <i class="fa fa-search"></i>
+              </button>
+            </form>
+            <div class="suggestions px-2"></div>
+            <button id="mobile-btn-search" class="mobile-btn-search icon">
+              <i id="togglerIcon" class="fa fa-search"></i>
+            </button>
+          </div>
+          <div
+            id="mobile-search-container"
+            class="search-container col-12 position-relative p-0"
+          >
+            <form class="searchForm" action="#" method="get">
+              <input
+                type="text"
+                class="searchbox"
+                placeholder="Enter book title, author name,or isbn..."
+                name="search"
+                autocomplete="off"
+                autofocus
+              />
+              <button type="submit" class="icon">
+                <i class="fa fa-search"></i>
+              </button>
+            </form>
+            <div class="suggestions px-2"></div>
+          </div>
+        </div>
+      </div>
+    </header>
+  </body>
+</html>
