@@ -94,13 +94,14 @@ $(document).ready(function () {
 
     //wait until no input after 2 seconds, then execute below
     debounceTimeout = setTimeout(async () => {
+      if (!input) return;
       //get the suggestions view container
-      const container = $(this).closest(".search-container");
-      const suggestionElement = $(container).find(".suggestions");
+      container = $(this).closest(".search-container");
+      suggestionElement = $(container).find(".suggestions");
+      $(suggestionElement).show();
       console.log(suggestionElement);
       $(suggestionElement).empty();
       //get mathcing book data from fetch API based on input
-      if (!input) return;
       const data = await getMatchingBooks(input);
       const suggestions = data.docs;
       console.log(suggestions);
@@ -109,9 +110,9 @@ $(document).ready(function () {
       //suggestions is array, so iterate each data
       suggestions.forEach((books, index) => {
         const imgKey = books.cover_i;
-        const imgURL = `https://covers.openlibrary.org/b/id/${imgKey}-S.jpg`;
+        const imgURL = `https://covers.openlibrary.org/b/id/${imgKey}-M.jpg`;
         $(suggestionElement).append(
-          `<button class="search-result d-flex w-100 gap-4 p-2 bg-light border-bottom border-dark-subtle"> <img src="${imgURL}" alt="" width="100" class="bg-dark" /><div id=about-book-${index} class="about-book text-start m-0 p-0"> <h2 class"book-title">${books.title} (${books.first_publish_year})</h2></div></button>`
+          `<button class="search-result d-flex w-100 gap-4 p-2 border-bottom border-dark-subtle"> <img src="${imgURL}" alt="" width="100" class="bg-dark" /><div id=about-book-${index} class="about-book text-start m-0 p-0"> <h2 class"book-title">${books.title} (${books.first_publish_year})</h2></div></button>`
         );
         books.author_name.forEach((authors) => {
           $(`#about-book-${index}`).append(
