@@ -12,6 +12,12 @@ $(document).ready(function () {
     dataContainer.getElementsByClassName("card-container")
   );
 
+  if (!cards.length) {
+    //disbable page button if no cards exist
+    $("#prevPage").prop("disabled", true);
+    $("#nextPage").prop("disabled", true);
+  }
+
   console.log(cards[0].outerHTML);
 
   //set items per page and total pages
