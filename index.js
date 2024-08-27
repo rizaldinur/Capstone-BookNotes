@@ -45,7 +45,13 @@ async function getItemsData() {
 }
 
 // GET home page
-app.get("/", async (req, res) => {});
+app.get("/", async (req, res) => {
+  items = await getItemsData();
+
+  res.render("index.ejs", {
+    books: items,
+  });
+});
 
 // POST a new post
 app.post("/submit", (req, res) => {});
