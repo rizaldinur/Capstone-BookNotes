@@ -1,0 +1,103 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background: none;
+  min-height: 100vh;
+}
+
+header {
+  background-color: seagreen;
+}
+#web-title {
+  text-decoration: none;
+}
+#web-title:link,
+#web-title:visited {
+  color: beige;
+}
+.searchForm {
+  display: flex;
+  width: 100%;
+}
+.searchbox {
+  width: 100%;
+  padding: 10px;
+  font-size: 17px;
+  border: 1px solid grey;
+  outline: none;
+  background: #f1f1f1;
+}
+
+.icon {
+  width: 50px;
+  padding: 10px;
+  background: #2196f3;
+  color: white;
+  font-size: 17px;
+  border: 1px solid grey;
+  border-left: none;
+  cursor: pointer;
+}
+.box {
+  height: 200px;
+  background-color: #2196f3;
+}
+
+#mobile-btn-search {
+  display: none;
+  background: none;
+  border: none;
+}
+#mobile-search-container {
+  display: none;
+}
+.suggestions {
+  position: absolute;
+  box-sizing: border-box;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  max-height: 1000px;
+  overflow-y: auto;
+  z-index: 1000;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.search-result {
+  background: none;
+  border: none;
+}
+.search-result:hover {
+  background-color: #2196f3;
+  color: beige;
+}
+
+.book-cover {
+  aspect-ratio: 3/5;
+  width: 80%;
+  object-fit: cover;
+  object-position: center;
+}
+.page-btn,
+.button {
+  width: 100px;
+  cursor: pointer;
+}
+
+.page-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+@media (max-width: 768px) {
+  .hide {
+    display: none;
+  }
+  #mobile-btn-search {
+    display: block;
+  }
+}
