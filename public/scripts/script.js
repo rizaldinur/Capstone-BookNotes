@@ -2,7 +2,7 @@ $(document).ready(function () {
   //mobile screen search button handler
   $("#mobile-btn-search").on("click", function () {
     $("#togglerIcon").toggleClass("fa-times");
-    $(".search-column").slideToggle();
+    $("#mobile-search-container").slideToggle();
   });
 
   //Make pagination
