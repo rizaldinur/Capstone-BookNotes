@@ -123,4 +123,10 @@ $(document).ready(function () {
       });
     }, 1000);
   });
+
+  $(document).on("click", (event) => {
+    if (!$(event.target).closest(container).length) {
+      $(suggestionElement).hide();
+    }
+  });
 });
