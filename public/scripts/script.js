@@ -81,8 +81,13 @@ $(document).ready(function () {
   //set debounce
   let debounceTimeout;
   //get the input from searchbox
+  let container;
+  let suggestionElement;
   $(".searchbox").on("input", async function () {
     const input = $(this).val();
+    if (!input) {
+      $(suggestionElement).empty();
+    }
 
     // Clear the previous timeout if the input changes before the timeout is reached
     clearTimeout(debounceTimeout);
