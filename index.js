@@ -6,7 +6,7 @@ import pg from "pg";
 const db = new pg.Client({
   user: "postgres",
   host: "localhost",
-  database: "postgres",
+  database: "book_notes",
   password: "surabaya12",
   port: 5432,
 });
@@ -14,14 +14,14 @@ const db = new pg.Client({
 db.connect();
 
 // read data from db
-db.query("SELECT * from capitals", (err, res) => {
-  if (err) {
-    console.error("Error executing query", err.stack);
-  } else {
-    quiz = res.rows;
-  }
-  db.end();
-});
+// db.query("SELECT * from capitals", (err, res) => {
+//   if (err) {
+//     console.error("Error executing query", err.stack);
+//   } else {
+//     quiz = res.rows;
+//   }
+//   db.end();
+// });
 
 const app = express();
 const port = 3000;
