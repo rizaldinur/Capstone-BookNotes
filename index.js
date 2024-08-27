@@ -28,13 +28,21 @@ const port = 3000;
 
 let items = [];
 
-let totalCorrect = 0;
-
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(express.static("node_modules"));
 
-let currentQuestion = {};
+async function getItemsData() {
+  try {
+    const res = await db.query("SELECT * FROM reviewed_books ORDER BY id ASC");
+    console.log(res.rows);
+    return res.rows;
+  } catch (error) {
+    console.error("Error fetching items data from database.\n", error.stack);
+    return [];
+  }
+}
 
 // GET home page
 app.get("/", async (req, res) => {});
