@@ -72,7 +72,7 @@ async function editReview(review) {
 }
 // GET home page
 app.get("/", async (req, res) => {
-  items = await getItemsData();
+  const items = await getItemsData();
 
   res.render("index.ejs", {
     books: items,
