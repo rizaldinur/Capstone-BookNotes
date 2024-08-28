@@ -7,9 +7,6 @@ body {
   min-height: 100vh;
 }
 
-header {
-  background-color: seagreen;
-}
 #web-title {
   text-decoration: none;
 }
@@ -33,16 +30,11 @@ header {
 .icon {
   width: 50px;
   padding: 10px;
-  background: #2196f3;
   color: white;
   font-size: 17px;
   border: 1px solid grey;
   border-left: none;
   cursor: pointer;
-}
-.box {
-  height: 200px;
-  background-color: #2196f3;
 }
 
 #mobile-btn-search {
@@ -79,9 +71,9 @@ header {
 .book-cover {
   aspect-ratio: 3/5;
   width: 80%;
-  object-fit: cover;
   object-position: center;
 }
+
 .page-btn,
 .button {
   width: 100px;
