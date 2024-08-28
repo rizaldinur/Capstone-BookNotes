@@ -79,9 +79,25 @@ app.get("/", async (req, res) => {
   });
 });
 
-// POST a new post
-app.get("/book", (req, res) => {
+// GET a reviewed book
+app.get("/book", async (req, res) => {
   const bookKey = req.query.bookKey;
+  const book = await bookReviewed(bookKey);
+  console.log(book[0]);
+  console.log(bookKey);
+
+  //check if book already reviewd in DB
+  //if exist
+  // if (await bookReviewed(bookKey)) {
+  // }
+  res.render("book.ejs", {
+    book: book[0],
+  });
+});
+
+app.post("/edit-review", async (req, res) => {
+  const bookKey = req.body.bookKey;
+  const book = await bookReviewed(bookKey);
   console.log(bookKey);
   res.sendStatus(200);
 });
