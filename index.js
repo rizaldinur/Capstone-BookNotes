@@ -60,6 +60,16 @@ async function bookReviewed(bookKey) {
   }
 }
 
+async function editReview(review) {
+  try {
+    await db.query(
+      "UPDATE reviewed_books SET review = $1, rating = $2 WHERE key = $3",
+      [review.reviewArea, review.rating, review.bookKey]
+    );
+  } catch (err) {
+    console.warn(err.stack);
+  }
+}
 // GET home page
 app.get("/", async (req, res) => {
   items = await getItemsData();
