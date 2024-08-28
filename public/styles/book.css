@@ -1,0 +1,55 @@
+.reviewed-book-cover {
+  aspect-ratio: 3/5;
+  width: 100%;
+  object-position: center;
+}
+.feedback-form {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.rating {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.rating input {
+  display: none;
+}
+
+.rating label {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.rating label:hover,
+.rating label:hover ~ label {
+  color: orange;
+}
+
+.rating input:checked ~ label {
+  color: orange;
+}
+
+.stars {
+  font-size: 24px;
+}
+.stars.checked {
+  color: orange;
+}
+
+.review-content {
+  border: none !important;
+  text-align: justify;
+  overflow-y: auto;
+  resize: none;
+}
+
+@media (max-width: 768px) {
+  .reviewed-book-cover {
+    width: 70%;
+  }
+}
