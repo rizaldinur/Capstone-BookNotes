@@ -1,2 +1,79 @@
-<%- include('partials/header.ejs'); -%> 
+<%- include('partials/header.ejs'); -%>
+<article id="edit-review">
+  <div class="container-md py-4 justify-content-center">
+    <div class="row gx-5">
+      <div class="col-md-3 text-md-start text-center mb-md-0 mb-3">
+        <img src="<%= book.cover %>" alt="" class="reviewed-book-cover" />
+      </div>
+      <div class="col-md-9">
+        <h2
+          class="m-0 text-light text-md-start text-center border-bottom border-dark-subtle mb-3"
+        >
+          <%= book.book_title %>
+        </h2>
+
+        <p class="text-light">
+          Year first published : <%= book.date_publish %>
+        </p>
+        <p class="text-light">Author(s): <%= book.author %></p>
+
+        <form action="/submit-review" method="post" id="form-review-submit">
+          <input type="hidden" name="bookKey" value="<%= book.key %>" />
+          <div class="mb-3 text-light">
+            <label for="reviewArea" class="form-label">Write your review</label>
+            <textarea
+              name="reviewArea"
+              class="form-control"
+              id="reviewArea"
+              rows="20"
+              maxlength="5000"
+              autofocus
+              required
+            >
+<%= book.review %></textarea
+            >
+          </div>
+          <p class="mb-0 text-light">Rating :</p>
+          <div class="rating text-light">
+            <% for( let index = 5; index >= 1; index--) { %> <% if (index ===
+            book.rating) { %>
+            <input
+              type="radio"
+              id="star<%=index%>"
+              name="rating"
+              value="<%=index%>"
+              required
+              checked
+            />
+            <label for="star<%=index%>">&#9733;</label>
+            <% } else { %>
+            <input
+              type="radio"
+              id="star<%=index%>"
+              name="rating"
+              value="<%=index%>"
+              required
+            />
+            <label for="star<%=index%>">&#9733;</label>
+            <% } %> <% } %>
+          </div>
+          <div class="button-group">
+            <button type="submit" class="btn btn-sm btn-primary">
+              <i class="fa fa-pencil-square fa-lg" aria-hidden="true"></i>
+              Submit
+            </button>
+            <button
+              type="reset"
+              class="btn btn-sm btn-dark"
+              data-bs-toggle="modal"
+              data-bs-target="#deleteModal"
+            >
+              <i class="fa fa-undo fa-lg" aria-hidden="true"></i> Reset
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</article>
 <%- include('partials/footer.ejs'); -%>
