@@ -99,7 +99,20 @@ app.post("/edit-review", async (req, res) => {
   const bookKey = req.body.bookKey;
   const book = await bookReviewed(bookKey);
   console.log(bookKey);
-  res.sendStatus(200);
+  console.log(book[0]);
+  res.render("review.ejs", { book: book[0] });
+});
+
+app.post("/submit-review", async (req, res) => {
+  const review = req.body;
+  console.log(review);
+  try {
+    await editReview(review);
+    res.redirect(`/book?bookKey=${review.bookKey}`);
+  } catch (error) {
+    console.error(error);
+    res.sendStatus(400);
+  }
 });
 
 app.listen(port, () => {
