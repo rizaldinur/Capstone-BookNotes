@@ -44,49 +44,54 @@
       <div class="col-md-3 text-md-start text-center mb-md-0 mb-3">
         <img src="<%= book.cover %>" alt="" class="reviewed-book-cover" />
       </div>
-      <div class="col-9">
-        <h2 class="text-light border-bottom border-dark-subtle pb-1 mb-3">
-          Book Title here
-        </h2>
-        <p class="text-light">Year first published:</p>
-        <p class="text-light">Author(s):</p>
-        <p class="text-light review-content">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Vero
-          suscipit sed amet. Aliquam culpa nisi esse magni hic voluptatibus,
-          numquam enim rerum accusantium porro aspernatur iure doloremque
-          consequuntur. Nesciunt, perferendis. Lorem, ipsum dolor sit amet
-          consectetur adipisicing elit. Voluptate quisquam sit quidem asperiores
-          iure dolorem fugit repellat, fugiat voluptatem sed, doloribus
-          inventore facere perferendis repudiandae beatae! Nostrum nam
-          necessitatibus odit. Lorem ipsum dolor sit amet consectetur,
-          adipisicing elit. Ipsa deleniti adipisci dolorum quod totam magni
-          molestiae est eius, aliquid quos soluta praesentium optio
-          exercitationem animi recusandae facilis ullam ratione. In! Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Esse eaque, sequi nulla
-          pariatur sunt dolorum quibusdam dolorem inventore quisquam id deleniti
-          dolores, iure voluptatum corporis. Quibusdam reiciendis labore esse
-          placeat. Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-          Cupiditate architecto voluptates, voluptatem asperiores, tempora
-          aliquid eum doloribus voluptatum, maxime quos ducimus necessitatibus
-          neque sed atque dolor aut exercitationem impedit unde. Lorem ipsum
-          dolor sit amet consectetur adipisicing elit. Dignissimos sit
-          doloremque enim nesciunt, ad ipsa dolorum totam? Esse iusto fugit,
-          architecto minus quae rem sed quam aut sit id quisquam!
-        </p>
-        <p class="mb-0 text-light">Rating :</p>
+      <div class="col-md-9 text-light">
+        <div
+          class="header-container d-flex flex-md-row flex-column-reverse w-100 align-items-center justify-content-between text-light border-bottom border-dark-subtle pb-1 mb-3"
+        >
+          <h2 class="m-0"><%= book.book_title %></h2>
+          <form action="/edit-review" id="form-edit" method="post">
+            <input type="hidden" name="bookKey" value="<%= book.key %>" />
+          </form>
+          <div class="button-group">
+            <button
+              type="submit"
+              class="btn btn-sm btn-outline-light"
+              form="form-edit"
+            >
+              <i class="fa fa-pencil-square fa-lg" aria-hidden="true"></i>
+              Edit
+            </button>
+            <button
+              type="button"
+              class="btn btn-sm btn-outline-danger"
+              data-bs-toggle="modal"
+              data-bs-target="#deleteModal"
+            >
+              <i class="fa fa-trash fa-lg" aria-hidden="true"></i> Delete
+            </button>
+          </div>
+        </div>
 
-        <div class="rating text-light">
-          <!-- Notice that the stars are in reverse order -->
-          <input type="radio" id="star5" name="rating" value="5" />
-          <label for="star5">&#9733;</label>
-          <input type="radio" id="star4" name="rating" value="4" />
-          <label for="star4">&#9733;</label>
-          <input type="radio" id="star3" name="rating" value="3" />
-          <label for="star3">&#9733;</label>
-          <input type="radio" id="star2" name="rating" value="2" />
-          <label for="star2">&#9733;</label>
-          <input type="radio" id="star1" name="rating" value="1" />
-          <label for="star1">&#9733;</label>
+        <p>Year first published : <%= book.date_publish %></p>
+        <p>Author(s): <%= book.author %></p>
+        <label for="review-content">Review :</label>
+        <textarea
+          id="review-content"
+          readonly
+          class="review-content form-control-plaintext text-light"
+          rows="20"
+        >
+<%= book.review %></textarea
+        >
+        <p class="mb-0">Rating :</p>
+
+        <div class="rated d-flex align-items-center justify-content-start">
+          <% for( let index = 1; index <= 5; index++ ) { %> <% if (index <=
+          book.rating) { %>
+          <div class="stars checked">&#9733;</div>
+          <% } else { %>
+          <div class="stars">&#9733;</div>
+          <% } %> <% } %>
         </div>
       </div>
     </div>
