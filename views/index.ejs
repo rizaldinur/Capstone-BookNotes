@@ -3,6 +3,7 @@
 <article id="books-album">
   <div class="container-md py-4">
     <h2 class="pb-3 border-bottom border-dark-subtle text-light">My Books</h2>
+    <form id="myBook" action="/book" method="get"></form>
     <div
       id="book-container"
       class="row justify-content-md-start mt-1 justify-content-center g-4"
@@ -13,7 +14,15 @@
           <div class="card-body text-center">
             <img class="book-cover" src="<%=book.cover %>" alt="book cover" />
             <h2 class="card-text text-light mt-2"><%= book.book_title %></h2>
-            <button class="button btn btn-outline-primary shadow">View</button>
+            <button
+              type="submit"
+              form="myBook"
+              name="bookKey"
+              value="<%= book.key %>"
+              class="button btn btn-outline-primary shadow"
+            >
+              View
+            </button>
           </div>
         </div>
       </div>
