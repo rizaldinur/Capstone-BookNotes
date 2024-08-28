@@ -7,18 +7,21 @@ $(document).ready(function () {
 
   //Make pagination
   //fetch books data to be viewed
-  const dataContainer = document.getElementById("book-container");
-  const cards = Array.from(
-    dataContainer.getElementsByClassName("card-container")
-  );
+  let cards;
+  try {
+    const dataContainer = document.getElementById("book-container");
+    cards = Array.from(dataContainer.getElementsByClassName("card-container"));
+    console.log(cards[0].outerHTML);
+  } catch (error) {
+    cards = [];
+    console.error(error);
+  }
 
   if (!cards.length) {
     //disbable page button if no cards exist
     $("#prevPage").prop("disabled", true);
     $("#nextPage").prop("disabled", true);
   }
-
-  console.log(cards[0].outerHTML);
 
   //set items per page and total pages
   const itemsPerPage = 6;
