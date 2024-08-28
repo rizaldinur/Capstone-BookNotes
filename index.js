@@ -26,8 +26,6 @@ db.connect();
 const app = express();
 const port = 3000;
 
-let items = [];
-
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
@@ -37,7 +35,25 @@ async function getItemsData() {
   try {
     const res = await db.query("SELECT * FROM reviewed_books ORDER BY id ASC");
     console.log(res.rows);
-    return res.rows;
+    if (res.rows.length) {
+      return res.rows;
+    }
+    return [];
+  } catch (error) {
+    console.error("Error fetching items data from database.\n", error.stack);
+    return [];
+  }
+}
+
+async function bookReviewed(bookKey) {
+  try {
+    const res = await db.query(
+      `SELECT *FROM reviewed_books WHERE key = '${bookKey}' ORDER BY id ASC`
+    );
+    if (res.rows.length) {
+      return res.rows;
+    }
+    return [];
   } catch (error) {
     console.error("Error fetching items data from database.\n", error.stack);
     return [];
