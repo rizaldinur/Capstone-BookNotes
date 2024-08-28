@@ -2,12 +2,47 @@
 <article id="reviewed-book">
   <div class="container-md py-4 justify-content-center">
     <div class="row gx-5">
-      <div class="col-3">
-        <img
-          src="https://covers.openlibrary.org/b/id/14625765-L.jpg"
-          alt=""
-          class="reviewed-book-cover"
-        />
+      <div
+        class="modal fade"
+        id="deleteModal"
+        tabindex="-1"
+        aria-labelledby="exampleModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content bg-dark text-light">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
+                Delete Review
+              </h1>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-theme="light"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+              Your action is irreversible. Are you sure you want to delete?
+            </div>
+            <div class="modal-footer">
+              <button
+                type="button"
+                class="btn btn-danger"
+                data-bs-dismiss="modal"
+              >
+                No
+              </button>
+              <button type="button" class="btn btn-outline-secondary">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 text-md-start text-center mb-md-0 mb-3">
+        <img src="<%= book.cover %>" alt="" class="reviewed-book-cover" />
       </div>
       <div class="col-9">
         <h2 class="text-light border-bottom border-dark-subtle pb-1 mb-3">
