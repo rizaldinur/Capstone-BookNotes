@@ -97,6 +97,36 @@ app.get("/", async (req, res) => {
   });
 });
 
+app.get("/search-book", async (req, res) => {
+  const query = req.query;
+  console.log(query);
+
+  const result = await axios.get(
+    `https://openlibrary.org/search.json?q=${query.search}&limit=50&fields=key,title,author_name,cover_i,first_publish_year`
+  );
+  // console.log(result.data.docs);
+  // res.sendStatus(200);
+
+  const data = result.data.docs;
+  // let author = [];
+
+  data.forEach((book) => {
+    try {
+      book.author_name = book.author_name.toString();
+    } catch (error) {
+      book.author_name = "";
+      console.error(error);
+    }
+    // console.log(book.author_name);
+  });
+
+  console.log(data);
+
+  res.render("searchResults.ejs", {
+    books: data,
+  });
+});
+
 // GET a reviewed book
 app.get("/book", async (req, res) => {
   const bookKey = req.query.bookKey;
