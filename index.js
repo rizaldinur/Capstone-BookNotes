@@ -61,6 +61,33 @@ async function editReview(review) {
     console.warn(err.stack);
   }
 }
+
+async function newReview(review) {
+  try {
+    await db.query(
+      "INSERT INTO reviewed_books (key, book_title, author, date_publish, review, cover,rating) VALUES ($1,$2,$3,$4,$5,$6,$7)",
+      [
+        review.bookKey,
+        review.title,
+        review.author,
+        review.date_publish,
+        review.reviewArea,
+        review.cover,
+        review.rating,
+      ]
+    );
+  } catch (err) {
+    console.warn(err.stack);
+  }
+}
+
+async function deleteReview(bookKey) {
+  try {
+    await db.query("DELETE FROM reviewed_books WHERE key = $1", [bookKey]);
+  } catch (err) {
+    console.warn(err.stack);
+  }
+}
 // GET home page
 app.get("/", async (req, res) => {
   const items = await getItemsData();
