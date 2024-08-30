@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
+import axios from "axios";
 
 // set up db connection
 const db = new pg.Client({
@@ -13,23 +14,13 @@ const db = new pg.Client({
 
 db.connect();
 
-// read data from db
-// db.query("SELECT * from capitals", (err, res) => {
-//   if (err) {
-//     console.error("Error executing query", err.stack);
-//   } else {
-//     quiz = res.rows;
-//   }
-//   db.end();
-// });
-
 const app = express();
 const port = 3000;
 
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
-app.use(express.static("node_modules"));
+app.use(express.static("src"));
 
 async function getItemsData() {
   try {
