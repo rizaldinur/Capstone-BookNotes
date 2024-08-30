@@ -3,67 +3,26 @@
 <section>
   <div class="container-md py-4">
     <h2 class="pb-2 border-bottom border-dark-subtle mb-4">Search Results</h2>
-    <div class="row justify-content-center">
-      <div class="col-md-8 col-9">
-        <div class="card mb-3">
-          <div class="row g-0">
-            <div class="col-md-4">
-              <img
-                src="https://covers.openlibrary.org/b/id/14627042-L.jpg"
-                class="img-fluid rounded-start"
-                alt="..."
-              />
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </p>
-                <p class="card-text">
-                  <small class="text-body-secondary"
-                    >Last updated 3 mins ago</small
-                  >
-                </p>
-              </div>
-            </div>
+    <div
+      class="row justify-content-start gy-4 row-cols-xl- row-cols-md-4 row-cols-2"
+    >
+      <% if (books.length) { %> <% books.forEach(book => { %>
+      <div class="col">
+        <div class="card">
+          <img
+            src="https://covers.openlibrary.org/b/id/<%=book.cover_i%>-L.jpg"
+            class="card-img-top"
+            alt="..."
+            style="aspect-ratio: 3/5; object-position: center"
+          />
+          <div class="card-body">
+            <h5 class="card-title"><%= book.title %></h5>
+            <p class="card-text"><%= book.author_name %></p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
           </div>
         </div>
       </div>
-      <div class="col-md-8 col-9">
-        <div class="card mb-3">
-          <div class="row g-0">
-            <div
-              class="col-md-4 d-flex justify-content-center align-items-center"
-            >
-              <div class="spinner-grow">
-                <img
-                  src="https://covers.openlibrary.org/b/id/14627042-L.jpg"
-                  class="img-fluid rounded-start"
-                  onload='this.parentNode.classList.remove("spinner-grow")'
-                />
-              </div>
-            </div>
-            <div class="col-md-8">
-              <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">
-                  This is a wider card with supporting text below as a natural
-                  lead-in to additional content. This content is a little bit
-                  longer.
-                </p>
-                <p class="card-text">
-                  <small class="text-body-secondary"
-                    >Last updated 3 mins ago</small
-                  >
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <%}); %> <% } %>
     </div>
   </div>
 </section>
