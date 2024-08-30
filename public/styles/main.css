@@ -85,6 +85,13 @@ body {
   opacity: 0.5;
 }
 
+.card-title,
+.card-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 @media (max-width: 768px) {
   .hide {
     display: none;
