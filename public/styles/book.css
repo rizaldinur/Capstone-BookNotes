@@ -43,7 +43,6 @@
 
 .review-content {
   border: none !important;
-  text-align: justify;
   overflow-y: auto;
   resize: none;
 }
