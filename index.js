@@ -131,16 +131,37 @@ app.get("/search-book", async (req, res) => {
 app.get("/book", async (req, res) => {
   const bookKey = req.query.bookKey;
   const book = await bookReviewed(bookKey);
-  console.log(book[0]);
-  console.log(bookKey);
+  // console.log(book[0]);
+  // console.log(bookKey);
 
   //check if book already reviewd in DB
   //if exist
-  // if (await bookReviewed(bookKey)) {
-  // }
-  res.render("book.ejs", {
-    book: book[0],
-  });
+  if (book.length) {
+    return res.render("book.ejs", {
+      book: book[0],
+    });
+  } else {
+    const result = await axios.get(
+      `https://openlibrary.org/search.json?q=${bookKey}&limit=1&fields=key,title,author_name,cover_i,first_publish_year`
+    );
+    const bookData = result.data.docs[0];
+    const imgURL = `https://covers.openlibrary.org/b/id/${bookData.cover_i}-L.jpg`;
+
+    const book = {
+      key: bookData.key.replace("/works/", ""),
+      author: bookData.author_name.toString(),
+      cover: imgURL,
+      book_title: bookData.title,
+      date_publish: bookData.first_publish_year.toString(),
+      review: "",
+      rating: 0,
+    };
+    console.log(book);
+    // return res.sendStatus(200);
+    return res.render("review.ejs", {
+      book: book,
+    });
+  }
 });
 
 app.post("/edit-review", async (req, res) => {
