@@ -167,21 +167,38 @@ app.get("/book", async (req, res) => {
 app.post("/edit-review", async (req, res) => {
   const bookKey = req.body.bookKey;
   const book = await bookReviewed(bookKey);
-  console.log(bookKey);
-  console.log(book[0]);
+  // console.log(bookKey);
+  // console.log(book[0]);
   res.render("review.ejs", { book: book[0] });
 });
 
 app.post("/submit-review", async (req, res) => {
   const review = req.body;
-  console.log(review);
-  try {
-    await editReview(review);
-    res.redirect(`/book?bookKey=${review.bookKey}`);
-  } catch (error) {
-    console.error(error);
-    res.sendStatus(400);
+  // console.log(review);
+  if ((await bookReviewed(review.bookKey)).length) {
+    try {
+      await editReview(review);
+      res.redirect(`/book?bookKey=${review.bookKey}`);
+    } catch (error) {
+      console.error(error);
+      res.sendStatus(400);
+    }
+  } else {
+    try {
+      await newReview(review);
+      res.redirect(`/book?bookKey=${review.bookKey}`);
+    } catch (error) {
+      console.error(error);
+      res.sendStatus(400);
+    }
   }
+});
+
+app.post("/delete", async (req, res) => {
+  const bookKey = req.body.bookKey;
+  console.log(bookKey);
+  await deleteReview(bookKey);
+  res.redirect("/");
 });
 
 app.listen(port, () => {
