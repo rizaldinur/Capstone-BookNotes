@@ -92,6 +92,11 @@ body {
   text-overflow: ellipsis;
 }
 
+.results-book-cover {
+  aspect-ratio: 3/5;
+  object-fit: cover;
+  object-position: center;
+}
 @media (max-width: 768px) {
   .hide {
     display: none;
