@@ -102,7 +102,7 @@ app.get("/search-book", async (req, res) => {
   console.log(query);
 
   const result = await axios.get(
-    `https://openlibrary.org/search.json?q=${query.search}&limit=50&fields=key,title,author_name,cover_i,first_publish_year`
+    `https://openlibrary.org/search.json?q=${query.search}&limit=100&fields=key,title,author_name,cover_i,first_publish_year`
   );
   // console.log(result.data.docs);
   // res.sendStatus(200);
