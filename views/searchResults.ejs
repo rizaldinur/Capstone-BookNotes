@@ -3,26 +3,47 @@
 <section>
   <div class="container-md py-4">
     <h2 class="pb-2 border-bottom border-dark-subtle mb-4">Search Results</h2>
+    <form id="getBook" action="/book" method="get"></form>
     <div
-      class="row justify-content-start gy-4 row-cols-xl- row-cols-md-4 row-cols-2"
+      id="book-container"
+      class="row justify-content-start gy-4 row-cols-xl-5 row-cols-md-4 row-cols-2"
+      data-itemsPerPage="20"
     >
       <% if (books.length) { %> <% books.forEach(book => { %>
-      <div class="col">
-        <div class="card">
+      <div class="col card-container">
+        <div class="card placeholder-glow h-100">
           <img
             src="https://covers.openlibrary.org/b/id/<%=book.cover_i%>-L.jpg"
-            class="card-img-top"
-            alt="..."
-            style="aspect-ratio: 3/5; object-position: center"
+            class="card-img-top bg-secondary placeholder results-book-cover"
+            alt="a book cover image"
+            onload='this.parentNode.classList.remove("placeholder-glow");this.classList.remove("placeholder"); '
           />
           <div class="card-body">
             <h5 class="card-title"><%= book.title %></h5>
             <p class="card-text"><%= book.author_name %></p>
-            <a href="#" class="btn btn-primary">Go somewhere</a>
+            <form action=""></form>
+            <button form="getBook" name="bookKey" value="<%= book.key.replace("/works/", "") %>" class="btn btn-primary">Go somewhere</btn>
           </div>
         </div>
       </div>
       <%}); %> <% } %>
+    </div>
+    <div
+      class="pagination d-flex justify-content-center mt-4 gap-2 align-items-center"
+    >
+      <button
+        class="page-btn btn btn-outline-secondary btn-sm shadow"
+        id="prevPage"
+      >
+        Previous
+      </button>
+      <small id="pageIndicator" class=""></small>
+      <button
+        class="page-btn btn btn-outline-secondary btn-sm shadow"
+        id="nextPage"
+      >
+        Next
+      </button>
     </div>
   </div>
 </section>
