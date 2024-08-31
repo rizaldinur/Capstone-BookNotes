@@ -15,10 +15,20 @@
         <p class="text-light">
           Year first published : <%= book.date_publish %>
         </p>
-        <p class="text-light">Author(s): <%= book.author %></p>
+        <p class="text-light">
+          Author(s): <%= book.author.replace(",",", ") %>
+        </p>
 
         <form action="/submit-review" method="post" id="form-review-submit">
           <input type="hidden" name="bookKey" value="<%= book.key %>" />
+          <input type="hidden" name="author" value="<%= book.author %>" />
+          <input type="hidden" name="title" value="<%= book.book_title %>" />
+          <input
+            type="hidden"
+            name="date_publish"
+            value="<%= book.date_publish %>"
+          />
+          <input type="hidden" name="cover" value="<%= book.cover %>" />
           <div class="mb-3 text-light">
             <label for="reviewArea" class="form-label">Write your review</label>
             <textarea
