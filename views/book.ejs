@@ -10,7 +10,7 @@
         aria-hidden="true"
       >
         <div class="modal-dialog">
-          <div class="modal-content bg-dark text-light">
+          <div class="modal-content">
             <div class="modal-header">
               <h1 class="modal-title fs-5" id="exampleModalLabel">
                 Delete Review
@@ -34,19 +34,33 @@
               >
                 No
               </button>
-              <button type="button" class="btn btn-outline-secondary">
+              <form action="/delete" method="post" id="form-delete"></form>
+              <button
+                form="form-delete"
+                type="submit"
+                name="bookKey"
+                value="<%= book.key %>"
+                class="btn btn-outline-secondary"
+              >
                 Delete
               </button>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-md-3 text-md-start text-center mb-md-0 mb-3">
-        <img src="<%= book.cover %>" alt="" class="reviewed-book-cover" />
+      <div class="col-md-3 text-center mb-md-0 mb-3">
+        <div class="placeholder-glow">
+          <img
+            src="<%= book.cover %>"
+            alt="book cover"
+            class="reviewed-book-cover img-fluid placeholder"
+            onload='this.parentNode.classList.remove("placeholder-glow");this.classList.remove("placeholder"); '
+          />
+        </div>
       </div>
-      <div class="col-md-9 text-light">
+      <div class="col-md-9">
         <div
-          class="header-container d-flex flex-md-row flex-column-reverse w-100 align-items-center justify-content-between text-light border-bottom border-dark-subtle pb-1 mb-3"
+          class="header-container d-flex flex-md-row flex-column-reverse w-100 align-items-center justify-content-between border-bottom border-dark-subtle pb-1 mb-3"
         >
           <h2 class="m-0"><%= book.book_title %></h2>
           <form action="/edit-review" id="form-edit" method="post">
@@ -55,7 +69,7 @@
           <div class="button-group">
             <button
               type="submit"
-              class="btn btn-sm btn-outline-light"
+              class="btn btn-outline-secondary btn-sm"
               form="form-edit"
             >
               <i class="fa fa-pencil-square fa-lg" aria-hidden="true"></i>
@@ -73,13 +87,13 @@
         </div>
 
         <p>Year first published : <%= book.date_publish %></p>
-        <p>Author(s): <%= book.author %></p>
+        <p>Author(s): <%= book.author.replace(",",", ") %></p>
         <label for="review-content">Review :</label>
         <textarea
           id="review-content"
           readonly
-          class="review-content form-control-plaintext text-light"
           rows="20"
+          class="review-content form-control bg-body-secondary mb-3"
         >
 <%= book.review %></textarea
         >
