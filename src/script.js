@@ -7,35 +7,26 @@ $(document).ready(function () {
 
   //Make pagination
   //fetch books data to be viewed
-  let cards;
-  try {
-    const dataContainer = document.getElementById("book-container");
-    cards = Array.from(dataContainer.getElementsByClassName("card-container"));
-    console.log(cards[0].outerHTML);
-  } catch (error) {
-    cards = [];
-    console.error(error);
-  }
-
-  if (!cards.length) {
-    //disbable page button if no cards exist
-    $("#prevPage").prop("disabled", true);
-    $("#nextPage").prop("disabled", true);
-  }
+  let dataContainer = document.getElementById("book-container");
+  let cards = Array.from(
+    dataContainer.getElementsByClassName("card-container")
+  );
 
   //set items per page and total pages
-  const itemsPerPage = 6;
+  const itemsPerPage = parseInt($(dataContainer).attr("data-itemsPerPage"));
+  console.log(itemsPerPage);
   let currentPage = 1;
   const totalPages = Math.ceil(cards.length / itemsPerPage);
 
   //display content function
-  function displayContent(page) {
-    $("#book-container").empty();
+  function displayContent(page, container, content, itemsPerPage) {
+    $(window).scrollTop(0);
+    $(container).empty();
     const start = (page - 1) * itemsPerPage;
-    const end = Math.min(start + itemsPerPage, cards.length);
+    const end = Math.min(start + itemsPerPage, content.length);
 
     for (let i = start; i < end; i++) {
-      $("#book-container").append(cards[i].outerHTML);
+      $(container).append(content[i].outerHTML);
     }
 
     // Update page indicator
@@ -49,20 +40,25 @@ $(document).ready(function () {
   $("#prevPage").click(function () {
     if (currentPage > 1) {
       currentPage--;
-      displayContent(currentPage);
+      displayContent(currentPage, dataContainer, cards, itemsPerPage);
     }
   });
 
   $("#nextPage").click(function () {
     if (currentPage < totalPages) {
       currentPage++;
-      displayContent(currentPage);
+      displayContent(currentPage, dataContainer, cards, itemsPerPage);
     }
   });
 
-  // Initial display
-  displayContent(currentPage);
-
+  if (cards.length === 0) {
+    //disbable page button if no cards exist
+    $("#prevPage").prop("disabled", true);
+    $("#nextPage").prop("disabled", true);
+  } else {
+    // Initial display
+    displayContent(currentPage, dataContainer, cards, itemsPerPage);
+  }
   //function get matching book on input search, limiit to 10
   async function getMatchingBooks(input) {
     try {
