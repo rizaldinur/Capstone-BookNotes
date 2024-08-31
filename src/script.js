@@ -114,7 +114,7 @@ $(document).ready(function () {
           `<button type="submit" value="${books.key.replace(
             "/works/",
             ""
-          )}" form="book-search" name="bookKey" class="search-result d-flex w-100 gap-4 p-2 border-bottom border-dark-subtle"> <img src="${imgURL}" alt="" width="100" class="bg-dark" /><div id=about-book-${index} class="about-book text-start m-0 p-0"> <h2 class"book-title">${
+          )}" form="book-search" name="bookKey" class="search-result d-flex w-100 gap-4 p-2 border border-1 text-dark border-secondary"> <img src="${imgURL}" alt="" width="100" class="bg-dark" /><div id=about-book-${index} class="about-book text-start m-0 p-0"> <h2 class"book-title">${
             books.title
           } (${books.first_publish_year})</h2></div></button>`
         );
