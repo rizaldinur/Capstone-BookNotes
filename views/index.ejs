@@ -2,7 +2,7 @@
 
 <article id="books-album">
   <div class="container-md py-4">
-    <h2 class="pb-3 border-bottom border-dark-subtle text-light">My Books</h2>
+    <h2 class="pb-3 border-bottom border-dark-subtle">My Books</h2>
     <form id="myBook" action="/book" method="get"></form>
     <div
       id="book-container"
@@ -10,10 +10,17 @@
     >
       <% if (books.length) { %> <% books.forEach(book => { %>
       <div class="card-container col-lg-4 col-md-6 col-sm-8">
-        <div class="card shadow-sm bg-transparent">
+        <div class="card shadow-sm bg-body-secondary">
           <div class="card-body text-center">
-            <img class="book-cover" src="<%=book.cover %>" alt="book cover" />
-            <h2 class="card-text text-light mt-2"><%= book.book_title %></h2>
+            <div class="placeholder-glow">
+              <img
+                class="book-cover img-fluid placeholder"
+                src="<%=book.cover %>"
+                alt="book cover"
+                onload='this.parentNode.classList.remove("placeholder-glow");this.classList.remove("placeholder"); '
+              />
+            </div>
+            <h3 class="mt-2 card-title"><%= book.book_title %></h3>
             <button
               type="submit"
               form="myBook"
@@ -32,14 +39,14 @@
       class="pagination d-flex justify-content-center mt-4 gap-2 align-items-center"
     >
       <button
-        class="page-btn btn btn-outline-light btn-sm shadow"
+        class="page-btn btn btn-outline-secondary btn-sm shadow"
         id="prevPage"
       >
         Previous
       </button>
-      <small id="pageIndicator" class="text-light"></small>
+      <small id="pageIndicator" class=""></small>
       <button
-        class="page-btn btn btn-outline-light btn-sm shadow"
+        class="page-btn btn btn-outline-secondary btn-sm shadow"
         id="nextPage"
       >
         Next
