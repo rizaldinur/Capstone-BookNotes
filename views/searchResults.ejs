@@ -19,7 +19,7 @@
     <div
       id="book-container"
       class="row justify-content-start gy-4 row-cols-xl-5 row-cols-md-4 row-cols-2"
-      data-itemsPerPage="20"
+      data-itemsPerPage="<%= query.perpage %>"
     >
       <% if (books.length) { %> <% books.forEach(book => { %>
       <div class="col card-container">
