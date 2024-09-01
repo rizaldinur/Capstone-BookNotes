@@ -53,8 +53,8 @@
           <img
             src="<%= book.cover %>"
             alt="book cover"
-            class="reviewed-book-cover img-fluid placeholder"
-            onload='this.parentNode.classList.remove("placeholder-glow");this.classList.remove("placeholder"); '
+            class="reviewed-book-cover bg-secondary img-fluid placeholder"
+            onload="removePlaceholder(this) "
           />
         </div>
       </div>
