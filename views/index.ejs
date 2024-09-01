@@ -18,7 +18,7 @@
                 class="book-cover img-fluid placeholder"
                 src="<%=book.cover %>"
                 alt="book cover"
-                onload="removePlaceholder(this) "
+                onload='this.parentNode.classList.remove("placeholder-glow");this.classList.remove("placeholder");'
               />
             </div>
             <h3 class="mt-2 card-title"><%= book.book_title %></h3>

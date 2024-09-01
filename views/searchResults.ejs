@@ -28,7 +28,7 @@
             src="https://covers.openlibrary.org/b/id/<%=book.cover_i%>-L.jpg"
             class="card-img-top bg-secondary placeholder results-book-cover"
             alt="a book cover image"
-            onload='removePlaceholder(this) '
+            onload='this.parentNode.classList.remove("placeholder-glow");this.classList.remove("placeholder");'
           />
           <div class="card-body">
             <h5 class="card-title"><%= book.title %></h5>
