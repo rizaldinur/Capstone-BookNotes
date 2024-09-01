@@ -18,7 +18,7 @@
                 class="book-cover img-fluid placeholder"
                 src="<%=book.cover %>"
                 alt="book cover"
-                onload='this.parentNode.classList.remove("placeholder-glow");this.classList.remove("placeholder"); '
+                onload="removePlaceholder(this) "
               />
             </div>
             <h3 class="mt-2 card-title"><%= book.book_title %></h3>
@@ -39,6 +39,9 @@
     <div
       class="pagination d-flex justify-content-center mt-4 gap-2 align-items-center"
     >
+      <button class="btn btn-outline-secondary btn-sm shadow" id="firstPage">
+        <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+      </button>
       <button
         class="page-btn btn btn-outline-secondary btn-sm shadow"
         id="prevPage"
@@ -51,6 +54,9 @@
         id="nextPage"
       >
         Next
+      </button>
+      <button class="btn btn-outline-secondary btn-sm shadow" id="lastPage">
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
       </button>
     </div>
   </div>
