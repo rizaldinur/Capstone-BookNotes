@@ -15,54 +15,63 @@
   <body class="bg-body">
     <header class="shadow-sm bg-success">
       <div class="container-md">
-        <div class="row justify-content-between align-items-center py-4 px-2">
-          <div class="col-6 p-0">
-            <a id="web-title" href="/"
-              ><h1 class="m-0 d-inline-block">Book Notes</h1></a
-            >
-          </div>
+        <div
+          class="d-flex flex-wrap justify-content-between align-items-center py-4"
+        >
+          <h1 class="m-0">
+            <a id="web-title" class="link-light" href="/">Book Notes</a>
+          </h1>
           <div
             class="search-container col-6 d-flex justify-content-end position-relative p-0"
           >
             <form class="searchForm hide" action="/search-book" method="get">
-              <input
-                type="text"
-                class="searchbox text-dark"
-                placeholder="Enter book title, author name,or isbn..."
-                name="search"
-                autocomplete="off"
-                required
-              />
-              <button type="submit" class="icon bg-primary">
-                <i class="fa fa-search"></i>
-              </button>
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="searchbox form-control"
+                  placeholder="Enter book title, author name,or isbn..."
+                  name="search"
+                  autocomplete="off"
+                  required
+                />
+                <button type="submit" class="icon btn btn-primary">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
             </form>
             <form id="book-search" action="/book" method="get"></form>
-            <div class="suggestions"></div>
+            <div class="suggestions list-group"></div>
             <button
               id="mobile-btn-search"
-              class="mobile-btn-search icon btn btn-dark"
+              class="btn btn-success rounded-circle"
             >
               <i id="togglerIcon" class="fa fa-search"></i>
             </button>
           </div>
+          <button
+            class="btn btn-success rounded-circle themeToggler"
+            role="button"
+          >
+            <i class="fa fa-moon-o themeTogglerIcon" aria-hidden="true"></i>
+          </button>
           <div
             id="mobile-search-container"
-            class="search-container col-12 position-relative p-0"
+            class="search-container col-12 position-relative p-0 mt-1"
           >
             <form class="searchForm" action="/search-book" method="get">
-              <input
-                type="text"
-                class="searchbox text-dark"
-                placeholder="Enter book title, author name,or isbn..."
-                name="search"
-                autocomplete="off"
-                autofocus
-                required
-              />
-              <button type="submit" class="icon bg-primary">
-                <i class="fa fa-search"></i>
-              </button>
+              <div class="input-group">
+                <input
+                  type="text"
+                  class="searchbox form-control"
+                  placeholder="Enter book title, author name,or isbn..."
+                  name="search"
+                  autocomplete="off"
+                  required
+                />
+                <button type="submit" class="icon btn btn-primary">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
             </form>
             <div class="suggestions"></div>
           </div>
