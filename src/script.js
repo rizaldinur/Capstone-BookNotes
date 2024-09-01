@@ -44,6 +44,26 @@ async function getMatchingBooks(input) {
 }
 
 $(document).ready(function () {
+  window.addEventListener("scroll", function () {
+    const scrollButton = document.getElementById("scrollButton");
+    const scrollPosition = window.scrollY;
+    const pageHeight = document.documentElement.scrollHeight;
+    const viewportHeight = window.innerHeight;
+
+    if (scrollPosition > (pageHeight - viewportHeight) / 4) {
+      scrollButton.classList.add("show");
+    } else {
+      scrollButton.classList.remove("show");
+    }
+  });
+
+  //handle scroll button
+  document
+    .querySelector("#scrollButton")
+    .addEventListener("click", function () {
+      window.scrollTo(0, 0);
+    });
+
   //mobile screen search button handler
   $("#mobile-btn-search").on("click", function () {
     $("#togglerIcon").toggleClass("fa-times");
