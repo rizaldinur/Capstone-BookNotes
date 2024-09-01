@@ -28,13 +28,12 @@
             src="https://covers.openlibrary.org/b/id/<%=book.cover_i%>-L.jpg"
             class="card-img-top bg-secondary placeholder results-book-cover"
             alt="a book cover image"
-            onload='this.parentNode.classList.remove("placeholder-glow");this.classList.remove("placeholder"); '
+            onload='removePlaceholder(this) '
           />
           <div class="card-body">
             <h5 class="card-title"><%= book.title %></h5>
             <p class="card-text"><%= book.author_name %></p>
-            <form action=""></form>
-            <button form="getBook" name="bookKey" value="<%= book.key.replace("/works/", "") %>" class="btn btn-primary">Go somewhere</btn>
+            <button form="getBook" name="bookKey" value="<%= book.key.replace("/works/", "") %>" class="btn btn-primary">View</button>
           </div>
         </div>
       </div>
@@ -43,6 +42,9 @@
     <div
       class="pagination d-flex justify-content-center mt-4 gap-2 align-items-center"
     >
+      <button class="btn btn-outline-secondary btn-sm shadow" id="firstPage">
+        <i class="fa fa-angle-double-left" aria-hidden="true"></i>
+      </button>
       <button
         class="page-btn btn btn-outline-secondary btn-sm shadow"
         id="prevPage"
@@ -55,6 +57,9 @@
         id="nextPage"
       >
         Next
+      </button>
+      <button class="btn btn-outline-secondary btn-sm shadow" id="lastPage">
+        <i class="fa fa-angle-double-right" aria-hidden="true"></i>
       </button>
     </div>
   </div>
