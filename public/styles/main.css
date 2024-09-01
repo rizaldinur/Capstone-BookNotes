@@ -95,11 +95,34 @@ body {
   object-fit: cover;
   object-position: center;
 }
+
+#scrollButton {
+  position: fixed;
+  z-index: 9999;
+  top: 70%;
+  right: 10px;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 1s ease, visibility 1s ease;
+}
+
+#scrollButton.show {
+  opacity: 1; /* Fully opaque */
+  visibility: visible; /* Visible in the layout */
+}
+
 @media (max-width: 768px) {
   .hide {
     display: none;
   }
   #mobile-btn-search {
     display: block;
+  }
+}
+
+@media (min-width: 600px) {
+  #scrollButton {
+    display: none;
   }
 }
