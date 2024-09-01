@@ -10,10 +10,7 @@ body {
 #web-title {
   text-decoration: none;
 }
-#web-title:link,
-#web-title:visited {
-  color: beige;
-}
+
 .searchForm {
   display: flex;
   width: 100%;
