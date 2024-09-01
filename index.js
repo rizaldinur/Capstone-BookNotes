@@ -1,18 +1,21 @@
 import express from "express";
 import bodyParser from "body-parser";
-import pg from "pg";
+// import pg from "pg";
 import axios from "axios";
+import dotenv from "dotenv";
+import { itemsPool } from "./DBConfig";
 
+dotenv.config();
 // set up db connection
-const db = new pg.Client({
-  user: "postgres",
-  host: "localhost",
-  database: "book_notes",
-  password: "surabaya12",
-  port: 5432,
-});
+// const db = new pg.Client({
+//   user: "postgres",
+//   host: "localhost",
+//   database: "book_notes",
+//   password: "surabaya12",
+//   port: 5432,
+// });
 
-db.connect();
+// db.connect();
 
 const app = express();
 const port = 3000;
@@ -24,7 +27,9 @@ app.use(express.static("src"));
 
 async function getItemsData() {
   try {
-    const res = await db.query("SELECT * FROM reviewed_books ORDER BY id ASC");
+    const res = await itemsPool.query(
+      "SELECT * FROM reviewed_books ORDER BY id ASC"
+    );
     // console.log(res.rows);
     if (res.rows.length) {
       return res.rows;
@@ -38,7 +43,7 @@ async function getItemsData() {
 
 async function bookReviewed(bookKey) {
   try {
-    const res = await db.query(
+    const res = await itemsPool.query(
       `SELECT *FROM reviewed_books WHERE key = '${bookKey}' ORDER BY id ASC`
     );
     if (res.rows.length) {
@@ -53,7 +58,7 @@ async function bookReviewed(bookKey) {
 
 async function editReview(review) {
   try {
-    await db.query(
+    await itemsPool.query(
       "UPDATE reviewed_books SET review = $1, rating = $2 WHERE key = $3",
       [review.reviewArea, review.rating, review.bookKey]
     );
@@ -64,7 +69,7 @@ async function editReview(review) {
 
 async function newReview(review) {
   try {
-    await db.query(
+    await itemsPool.query(
       "INSERT INTO reviewed_books (key, book_title, author, date_publish, review, cover,rating) VALUES ($1,$2,$3,$4,$5,$6,$7)",
       [
         review.bookKey,
@@ -83,7 +88,9 @@ async function newReview(review) {
 
 async function deleteReview(bookKey) {
   try {
-    await db.query("DELETE FROM reviewed_books WHERE key = $1", [bookKey]);
+    await itemsPool.query("DELETE FROM reviewed_books WHERE key = $1", [
+      bookKey,
+    ]);
   } catch (err) {
     console.warn(err.stack);
   }
