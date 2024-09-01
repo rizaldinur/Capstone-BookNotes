@@ -7,17 +7,13 @@
       </div>
       <div class="col-md-9">
         <h2
-          class="m-0 text-light text-md-start text-center border-bottom border-dark-subtle mb-3"
+          class="m-0 text-md-start text-center border-bottom border-dark-subtle mb-3"
         >
           <%= book.book_title %>
         </h2>
 
-        <p class="text-light">
-          Year first published : <%= book.date_publish %>
-        </p>
-        <p class="text-light">
-          Author(s): <%= book.author.replace(",",", ") %>
-        </p>
+        <p class="">Year first published : <%= book.date_publish %></p>
+        <p class="">Author(s): <%= book.author.replace(",",", ") %></p>
 
         <form action="/submit-review" method="post" id="form-review-submit">
           <input type="hidden" name="bookKey" value="<%= book.key %>" />
@@ -29,7 +25,7 @@
             value="<%= book.date_publish %>"
           />
           <input type="hidden" name="cover" value="<%= book.cover %>" />
-          <div class="mb-3 text-light">
+          <div class="mb-3">
             <label for="reviewArea" class="form-label">Write your review</label>
             <textarea
               name="reviewArea"
@@ -43,8 +39,8 @@
 <%= book.review %></textarea
             >
           </div>
-          <p class="mb-0 text-light">Rating :</p>
-          <div class="rating text-light">
+          <p class="mb-0">Rating :</p>
+          <div class="rating">
             <% for( let index = 5; index >= 1; index--) { %> <% if (index ===
             book.rating) { %>
             <input
