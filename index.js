@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 // import pg from "pg";
 import axios from "axios";
 import dotenv from "dotenv";
-import { itemsPool } from "./DBConfig";
+import { itemsPool } from "./DBConfig.js";
 
 dotenv.config();
 // set up db connection
