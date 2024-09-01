@@ -2,7 +2,19 @@
 
 <section>
   <div class="container-md py-4">
-    <h2 class="pb-2 border-bottom border-dark-subtle mb-4">Search Results</h2>
+    <div class="d-flex pb-2 border-bottom border-dark-subtle mb-4 justify-content-between">
+      <h2 class="m-0">Search Results</h2>
+      <div class="dropstart">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          View items per page
+        </button>
+        <ul class="dropdown-menu ">
+          <li><a class="dropdown-item" href="/search-book?search=<%=query.search.replace(" ", "+")%>">20</a></li>
+          <li><a class="dropdown-item" href="/search-book?search=<%=query.search.replace(" ", "+")%>&perpage=40">40</a></li>
+          <li><a class="dropdown-item" href="/search-book?search=<%=query.search.replace(" ", "+")%>&perpage=60">60</a></li>
+        </ul>
+      </div>
+    </div>
     <form id="getBook" action="/book" method="get"></form>
     <div
       id="book-container"
