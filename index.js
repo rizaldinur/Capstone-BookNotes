@@ -25,7 +25,7 @@ app.use(express.static("src"));
 async function getItemsData() {
   try {
     const res = await db.query("SELECT * FROM reviewed_books ORDER BY id ASC");
-    console.log(res.rows);
+    // console.log(res.rows);
     if (res.rows.length) {
       return res.rows;
     }
@@ -99,10 +99,14 @@ app.get("/", async (req, res) => {
 
 app.get("/search-book", async (req, res) => {
   const query = req.query;
+  if (!query.hasOwnProperty("perpage")) {
+    query.perpage = 20;
+  } else {
+    query.perpage = parseInt(query.perpage);
+  }
   console.log(query);
-
   const result = await axios.get(
-    `https://openlibrary.org/search.json?q=${query.search}&limit=100&fields=key,title,author_name,cover_i,first_publish_year`
+    `https://openlibrary.org/search.json?q=${query.search}&limit=200&fields=key,title,author_name,cover_i,first_publish_year`
   );
   // console.log(result.data.docs);
   // res.sendStatus(200);
@@ -120,10 +124,9 @@ app.get("/search-book", async (req, res) => {
     // console.log(book.author_name);
   });
 
-  console.log(data);
-
   res.render("searchResults.ejs", {
     books: data,
+    query: query,
   });
 });
 
