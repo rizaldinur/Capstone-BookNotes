@@ -1,4 +1,5 @@
-## Welcome 🙌🥳🎇
+# Welcome 🙌🥳🎇
+## Intro
 This personal project of mine is a book review notes that basically save and view all the books you have read and reviewed.
 
 The main function of my app :
