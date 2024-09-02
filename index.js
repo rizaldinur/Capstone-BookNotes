@@ -1,21 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
-// import pg from "pg";
 import axios from "axios";
-import dotenv from "dotenv";
 import { itemsPool } from "./DBConfig.js";
-
-dotenv.config();
-// set up db connection
-// const db = new pg.Client({
-//   user: "postgres",
-//   host: "localhost",
-//   database: "book_notes",
-//   password: "surabaya12",
-//   port: 5432,
-// });
-
-// db.connect();
 
 const app = express();
 const port = 5070;
