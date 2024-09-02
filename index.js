@@ -9,6 +9,7 @@ const port = 5070;
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
+app.use(express.static("favicon"));
 app.use(express.static("src"));
 
 async function getItemsData() {
@@ -199,4 +200,14 @@ app.post("/delete", async (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
+  console.log(`Process PID: ${process.pid}`);
+  console.log(`Process PPID: ${process.ppid}`);
+});
+
+process.on("SIGINT", () => {
+  console.log("Received SIGINT, shutting down...");
+  itemsPool.end(() => {
+    console.log("Pool has ended");
+    process.exit(0);
+  });
 });
